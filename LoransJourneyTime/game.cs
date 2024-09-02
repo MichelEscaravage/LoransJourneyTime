@@ -22,7 +22,7 @@ namespace LoransAdventure
                     "Make a choice to continue\n" +
                     "1. Start Game\n" +
                     "2. Load Game\n" +
-                    "3. Credits\n" +
+                    "3. Instructions\n" +
                     "4. Exit");
 
                 string choice = Console.ReadLine();
@@ -63,6 +63,21 @@ namespace LoransAdventure
                 }
             }
 
+            public static void Instructions()
+            {
+                Console.WriteLine("INSTRUCTIONS");
+                string continueStory = Console.ReadLine();
+
+                switch(continueStory)
+                {
+                    case "1":
+                        StartMenu();
+                        break;
+                        case "2":
+                        ContinueOrClose();
+                        break;
+                }
+            }
         }
         class Item
         {
