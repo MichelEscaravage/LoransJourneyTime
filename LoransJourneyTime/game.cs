@@ -16,11 +16,12 @@ namespace LoransAdventure
 
         class Game
         {
+            static string characterName = ""; 
             public static void StartMenu()
             {
                 Console.WriteLine("Welcome to the world of ... \n" +
                     "Make a choice to continue\n" +
-                    "1. Start Game\n" +
+                    "1. Start new Game\n" +
                     "2. Load Game\n" +
                     "3. Instructions\n" +
                     "4. Exit");
@@ -30,7 +31,7 @@ namespace LoransAdventure
                 switch (choice)
                 {
                     case "1":
-
+                        StartGame();
                         break;
                     case "2":
 
@@ -42,6 +43,63 @@ namespace LoransAdventure
                         ContinueOrClose();
                         break;
 
+                }
+
+
+            }
+            public static void StartGame()
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to the Adventure Game!");
+                Console.WriteLine("Welcome to the adventurous world of .... ");
+                Console.ReadKey();
+
+                AskForName();
+
+                Dialog("Welcome to .... " + characterName);
+                Choice();
+            }
+            static void Choice()
+            {
+                string input = "";
+                Console.WriteLine("Which will you choose? A or B?");
+                Console.ReadLine();
+
+                if (input.ToLower() == "A")
+                {
+                    Console.Clear();
+                    Console.WriteLine(characterName + " You've chosen path A!");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine(characterName + " You've chosen path B!");
+                }
+            }
+            public static void AskForName()
+            {
+                Console.Clear();
+                Console.WriteLine($"Fill in your character name");
+                characterName = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine($"Great! Your name is now {characterName}");
+                Console.ReadKey();
+                Console.Clear();
+            }
+
+            public static void Instructions()
+            {
+                Console.WriteLine("INSTRUCTIONS");
+                string continueStory = Console.ReadLine();
+
+                switch (continueStory)
+                {
+                    case "1":
+                        StartMenu();
+                        break;
+                    case "2":
+                        ContinueOrClose();
+                        break;
                 }
             }
             public static void ContinueOrClose()
@@ -62,21 +120,11 @@ namespace LoransAdventure
                     StartMenu();
                 }
             }
-
-            public static void Instructions()
+            static void Dialog(string message)
             {
-                Console.WriteLine("INSTRUCTIONS");
-                string continueStory = Console.ReadLine();
-
-                switch(continueStory)
-                {
-                    case "1":
-                        StartMenu();
-                        break;
-                        case "2":
-                        ContinueOrClose();
-                        break;
-                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(message);
+                Console.ResetColor();
             }
         }
         class Item
