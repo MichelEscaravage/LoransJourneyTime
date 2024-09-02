@@ -8,6 +8,9 @@ namespace LoransJourneyTime
 {
     class Game
     {
+        Dictionary<float,Scene> story = new Dictionary<float,Scene>();
+        float currentScene = 1.0f;
+
         public static string characterName = "";
         public static void StartMenu()
         {
@@ -46,7 +49,6 @@ namespace LoransJourneyTime
             AskForName();
 
             Dialog("Welcome to .... " + characterName);
-            StoryInitializer.Choice();
         }
   
         public static void AskForName()
@@ -58,6 +60,55 @@ namespace LoransJourneyTime
             Console.WriteLine($"Great! Your name is now {characterName}");
             Console.ReadKey();
             Console.Clear();
+        }
+
+        private void InitializeStory()
+        {
+            StoryInitializer storyInitializer = new StoryInitializer();
+            story = storyInitializer.InitializeStory();
+        }
+
+        void DisplayScene()
+        {
+            Console.Clear();
+            foreach (char character in story[currentScene].Text)
+            {
+                Console.Write(character);
+                Thread.Sleep(60);
+            }
+            Console.WriteLine("\n ");
+            int choiceIndex = 0;
+
+            foreach(Choice choice in story[currentScene].Choices)
+            {
+                choiceIndex++;
+                Console.WriteLine($"{choiceIndex}. {choice.Option}");
+            }
+        }
+
+        float GetPlayerChoice()
+        {
+            Console.WriteLine("\n Enter your choice");
+            int choiceIndex;
+
+            while (!int.TryParse(Console.ReadLine(), out choiceIndex) || choiceIndex < 1 || choiceIndex > story[currentScene].Choices.Count)
+            {
+                Console.WriteLine("Invalid input. Please enter a valid option.");
+                Console.Write("Enter your choice: ");
+            }
+            return story[currentScene].Choices[choiceIndex -1].NextScene;    
+        }
+
+        void UpdateScene(float choice)
+        {
+            if (choice >= 1.0f && choice <= 5.0f) 
+            {
+                currentScene = choice;
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please choose a valid option");
+            }
         }
 
         public static void Instructions()
