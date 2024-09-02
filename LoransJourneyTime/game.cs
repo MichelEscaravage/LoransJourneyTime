@@ -8,15 +8,19 @@ namespace LoransJourneyTime
 {
     class Game
     {
+        List<string> commands = new List<string>();
+        Dictionary<float, Scene> story = new Dictionary<float, Scene>();
+
+        float currentScene = 1.5f;
+        public string characterName = "";
+
         public Game() 
         {
             InitializeStory();
+            commands.Add("help");
+            commands.Add("save");
         }
-
-        Dictionary<float,Scene> story = new Dictionary<float,Scene>();
-        float currentScene = 1.0f;
-        public  string characterName = "";
-
+        
         public void StartMenu()
         {
             Console.WriteLine("Welcome to the world of ... \n" +
@@ -35,8 +39,18 @@ namespace LoransJourneyTime
                     StartGame();
                     break;
                 case "2":
+                    if (File.Exists("test.txt"))
+                    {
+                        float.TryParse(File.ReadAllText("test.txt"), out currentScene);
+                        StartGame();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Couldnt find file");
+                    }
 
                     break;
+
                 case "3":
 
                     break;
@@ -64,6 +78,31 @@ namespace LoransJourneyTime
             Console.WriteLine($"Great! Your name is now {characterName}");
             Console.ReadKey();
             Console.Clear();
+        }
+
+        public void CommandCheck(string choice)
+        {
+            foreach (string command in commands)
+            {
+                if (choice == command)
+                {
+                    switch (choice)
+                    {
+                        case "help":
+                            Console.WriteLine("jemoedr");
+                            break;
+                        case "save":
+                            StreamWriter file = new StreamWriter("test.txt");
+                            file.WriteLine(currentScene);
+                            file.Close();
+                            break;
+                        default:
+                            Console.WriteLine("Invalid input. Please enter a valid option.");
+                            break;
+                    }
+                }
+
+            }
         }
 
         private void InitializeStory()
@@ -94,29 +133,18 @@ namespace LoransJourneyTime
         {
             bool makingChoice = true;
             int choiceIndex = 0;
+            string? choice = "";
 
-            while (makingChoice)
+            while (choice is null || choice == "")
             {
-                Console.WriteLine("\n Enter your choice");
-                string choice = Console.ReadLine();
-
-                if (choice == "Help")
+                while (!int.TryParse(choice, out choiceIndex) || choiceIndex < 1 && choiceIndex > story[currentScene].Choices.Count)
                 {
-                    Console.WriteLine("TESTHELP");
-                    Console.ReadKey();
-                }
-                else if(int.TryParse(choice, out choiceIndex) || choiceIndex >= 1 && choiceIndex < story[currentScene].Choices.Count)
-                {
-                    makingChoice = false;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid option.");
-                    Console.Write("Enter your choice: ");
+                    Console.WriteLine("\nEnter your choice");
+                    choice = Console.ReadLine().ToLower();
+                    CommandCheck(choice);
                 }
             }
             return story[currentScene].Choices[choiceIndex - 1].NextScene;
-
         }
 
         void UpdateScene(float choice)

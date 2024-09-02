@@ -12,13 +12,13 @@ namespace LoransJourneyTime
         {
             Dictionary<float, Scene> story = new Dictionary<float, Scene>();
 
-            story.Add(1.0f, new Scene("test", 
+            story.Add(1.0f, new Scene("NIET OPGESLAGEN", 
                 new List<Choice>()
                 {
                     new Choice("keuze1", 1.1f),
                     new Choice("keuze2", 1.2f)
                 }));
-            story.Add(1.1f, new Scene("..",
+            story.Add(1.5f, new Scene("OPGESLAGEN",
               new List<Choice>
               {
                 new Choice("KUEZE2", 1.1f),
