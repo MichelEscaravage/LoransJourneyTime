@@ -8,11 +8,16 @@ namespace LoransJourneyTime
 {
     class Game
     {
+        public Game() 
+        {
+            InitializeStory();
+        }
+
         Dictionary<float,Scene> story = new Dictionary<float,Scene>();
         float currentScene = 1.0f;
+        public  string characterName = "";
 
-        public static string characterName = "";
-        public static void StartMenu()
+        public void StartMenu()
         {
             Console.WriteLine("Welcome to the world of ... \n" +
                 "Make a choice to continue\n" +
@@ -26,6 +31,7 @@ namespace LoransJourneyTime
             switch (choice)
             {
                 case "1":
+                    AskForName();
                     StartGame();
                     break;
                 case "2":
@@ -39,19 +45,17 @@ namespace LoransJourneyTime
                     break;
             }
         }
-        public static void StartGame()
+        public void StartGame()
         {
-            Console.Clear();
-            Console.WriteLine("Welcome to the Adventure Game!");
-            Console.WriteLine("Welcome to the adventurous world of .... ");
-            Console.ReadKey();
-
-            AskForName();
-
-            Dialog("Welcome to .... " + characterName);
+            while (true)
+            {
+                DisplayScene();
+                float choice = GetPlayerChoice();
+                UpdateScene(choice);
+            }
         }
   
-        public static void AskForName()
+        public void AskForName()
         {
             Console.Clear();
             Console.WriteLine($"Fill in your character name");
@@ -88,15 +92,31 @@ namespace LoransJourneyTime
 
         float GetPlayerChoice()
         {
-            Console.WriteLine("\n Enter your choice");
-            int choiceIndex;
+            bool makingChoice = true;
+            int choiceIndex = 0;
 
-            while (!int.TryParse(Console.ReadLine(), out choiceIndex) || choiceIndex < 1 || choiceIndex > story[currentScene].Choices.Count)
+            while (makingChoice)
             {
-                Console.WriteLine("Invalid input. Please enter a valid option.");
-                Console.Write("Enter your choice: ");
+                Console.WriteLine("\n Enter your choice");
+                string choice = Console.ReadLine();
+
+                if (choice == "Help")
+                {
+                    Console.WriteLine("TESTHELP");
+                    Console.ReadKey();
+                }
+                else if(int.TryParse(choice, out choiceIndex) || choiceIndex >= 1 && choiceIndex < story[currentScene].Choices.Count)
+                {
+                    makingChoice = false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid option.");
+                    Console.Write("Enter your choice: ");
+                }
             }
-            return story[currentScene].Choices[choiceIndex -1].NextScene;    
+            return story[currentScene].Choices[choiceIndex - 1].NextScene;
+
         }
 
         void UpdateScene(float choice)
@@ -111,7 +131,7 @@ namespace LoransJourneyTime
             }
         }
 
-        public static void Instructions()
+        public void Instructions()
         {
             Console.WriteLine("INSTRUCTIONS");
             string continueStory = Console.ReadLine();
@@ -126,7 +146,7 @@ namespace LoransJourneyTime
                     break;
             }
         }
-        public static void ContinueOrClose()
+        public void ContinueOrClose()
         {
             Console.Clear();
             Console.WriteLine($"Are you sure you want to quit? press x to quit\n");
@@ -144,7 +164,7 @@ namespace LoransJourneyTime
                 StartMenu();
             }
         }
-        static void Dialog(string message)
+         void Dialog(string message)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(message);
