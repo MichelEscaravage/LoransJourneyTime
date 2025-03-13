@@ -12,7 +12,7 @@ namespace LoransJourneyTime
 
         public static void Main(string[] args)
         {
-            game.StartMenu();
+            game.StartMenuChoice();
         }
     }
 }
