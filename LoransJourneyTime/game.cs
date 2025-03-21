@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
 using System.Threading;
 
 namespace LoransJourneyTime
@@ -33,6 +35,7 @@ namespace LoransJourneyTime
         // Displays the start menu with options to start a new game, load a game, view instructions, or exit.
         public void ShowStartMenu()
         {
+
             Console.WriteLine("Welcome pelgrim, are you ready to go on an adventure? \n" +
                               "Make a choice to continue\n" +
                               "1. Start new Game\n" +
@@ -131,14 +134,16 @@ namespace LoransJourneyTime
         }
 
         // Displays the current scene's text and available choices to the player.
-        private void DisplayScene()
+        private async void DisplayScene()
         {
             List<string> friends = new List<string> { "Tanuki", "Baku" };
             List<string> foes = new List<string> { "Nue", "Nekomata" };
 
             string sceneText = story[currentScene].Text;
-            string[] words = sceneText.Split(' ');
 
+            Task.Run(() => PlaySceneMusic());
+
+            string[] words = sceneText.Split(' ');
             foreach (string word in words)
             {
                 bool isFriend = false;
@@ -180,13 +185,31 @@ namespace LoransJourneyTime
                 }
                 if (!isFriend && !isFoe)
                 {
-                    foreach (char character in word)
+                    Console.ForegroundColor = ConsoleColor.White;
+                    if (Console.KeyAvailable)
                     {
-                        Console.Write(character);
-                        Thread.Sleep(40);
-                    }
-                }
+                        var key = Console.ReadKey(intercept: true).Key;
 
+                        if (key == ConsoleKey.Spacebar)
+                        {
+                            foreach (char character in word)
+                            {
+                                Console.Write(character);
+                                Thread.Sleep(10);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (char character in word)
+                        {
+                            Console.Write(character);
+                            Thread.Sleep(40);
+                        }
+                    }
+
+
+                }
                 Console.Write(' ');
             }
 
@@ -200,12 +223,83 @@ namespace LoransJourneyTime
             }
         }
 
+        public async void PlaySceneMusic()
+        {
+            var lastSceneType = story[currentScene].GetSceneType();
+            var currentSceneType = story[currentScene].GetSceneType();
+
+            lastSceneType = currentSceneType;
+
+            string filePath = "";
+            if (currentSceneType == lastSceneType)
+            {
+
+
+                
+
+
+            }
+            else
+            {
+                
+                switch (currentSceneType)
+                {
+                    case Scene.SceneType.Somber:
+
+                        filePath = "Assets/AudioFiles/cinematic-slow-sad-piano-soundtrack-187684.mp3";
+
+                        break;
+                    case Scene.SceneType.Normal:
+                        // code block
+                        break;
+                    default:
+                        // code block
+                        break;
+                }
+            }
+
+
+
+                using (var audioFile = new Mp3FileReader(filePath))
+                using (var outputDevice = new WaveOutEvent())
+                {
+                    outputDevice.Init(audioFile);
+                    outputDevice.Play();
+                }
+
+        }
+
         // Prompts the player to enter their choice and returns it as a lowercase string.
         private string GetPlayerChoice()
         {
+            // Clear any buffered input
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
+            }
+
             Console.WriteLine("\nEnter your choice:");
-            return Console.ReadLine()?.ToLower();
+
+            string choice = "";
+
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                // Check if the key is a valid choice
+                if (keyInfo.Key == ConsoleKey.D1 || keyInfo.Key == ConsoleKey.D2 || keyInfo.Key == ConsoleKey.D3 || keyInfo.Key == ConsoleKey.D4)
+                {
+                    Console.Write(keyInfo.KeyChar); // Show choice on screen
+                    choice = keyInfo.KeyChar.ToString();
+                }
+                else if (keyInfo.Key == ConsoleKey.Enter && !string.IsNullOrEmpty(choice))
+                {
+                    Console.WriteLine(); // Move to new line after Enter
+                    return choice;
+                }
+            }
         }
+
 
         // Validates the player's choice, checks if it's a command or a valid scene option, and returns the next scene.
         private float ValidateAndReturnScene(string choice)

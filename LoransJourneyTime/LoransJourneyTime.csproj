@@ -7,4 +7,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\AudioFiles\cinematic-slow-sad-piano-soundtrack-187684.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\AudioFiles\cinematic-slow-sad-piano-soundtrack-187684.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
 </Project>

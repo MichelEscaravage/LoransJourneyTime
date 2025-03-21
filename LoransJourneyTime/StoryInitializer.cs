@@ -17,7 +17,7 @@ namespace LoransJourneyTime
             Dictionary<float, Scene> story = new Dictionary<float, Scene>();
 
             // MAIN BRANCH -------------------------------------- MAIN BRANCH ------------------------------------- BRANCH 1
-            story.Add(1.0f, new Scene("Raindrops slowly drip on your head as the ceiling boards creek and move in the wind, you wake up.." +
+            story.Add(1.0f, new Scene(Scene.SceneType.Somber, "Raindrops slowly drip on your head as the ceiling boards creek and move in the wind, you wake up.." +
                 "\nYou look around you hoping yesterday was all a dream. Unfortunately it wasn't." +
                 "\nYou get up to see the now cold and expressionless body of your daughter laying on a bed of flowers." +
                 "\nIt is time to bury her.." +
@@ -30,7 +30,7 @@ namespace LoransJourneyTime
                 },
                 "You could either go straight towards the first step of the endgoal or take a small detour."));
 
-            story.Add(1.1f, new Scene("You gathered your supplies and start your journey, one more time you look behind you." +
+            story.Add(1.1f, new Scene(Scene.SceneType.Somber, "You gathered your supplies and start your journey, one more time you look behind you." +
                 "\nAll the memories made in this cabin, how happy you all were." +
                 "\nEverything changed since that faithful day." +
                 "\nAlthough you tried to stay strong for your daughter, you can't shake the feeling that you failed her." +
@@ -42,7 +42,7 @@ namespace LoransJourneyTime
               },
               "There is only one option at this point."));
 
-            story.Add(1.2f, new Scene("It is still cold down in the jungle village, the humidity is making it harder to breathe." +
+            story.Add(1.2f, new Scene(Scene.SceneType.Somber, "It is still cold down in the jungle village, the humidity is making it harder to breathe." +
                 "\nEven colder is the energy that surrounds this once bustling village, most houses are abandoned and closed shut.\n" +
                 "\nYou can hear a soft whining noice coming from one of the houses.." +
                 "\nYou decide to..",
@@ -54,7 +54,7 @@ namespace LoransJourneyTime
               },
               "Will you investigate the house in your village or will you focus on your goal?"));
 
-            story.Add(1.3f, new Scene("\nHours ago you left the jungle and the village behind you," +
+            story.Add(1.3f, new Scene(Scene.SceneType.Normal, "\nHours ago you left the jungle and the village behind you," +
                 "\nIt's been almost a full day of walking, slowly the winding paths are taking you up the mountain." +
                 "\nthe air is getting colder and the lush jungle trees have been traded for pine trees." +
                 "\nIt is getting darker slowly, it might be wise to set up camp." +
@@ -68,7 +68,7 @@ namespace LoransJourneyTime
               "The cave will give you cover from the elements but you can't be sure what is waiting for you inside." +
               "\nOn the other hand you might freeze outside."));
 
-            story.Add(1.4f, new Scene("Deciding it will probably be safer outside you set up camp." +
+            story.Add(1.4f, new Scene(Scene.SceneType.Tense, "Deciding it will probably be safer outside you set up camp." +
                 "\nYou lay your daughter down in the tent. You try to eat some food but the sorrow you feel makes it hard." +
                 "\nAfter a few attempts of eating you give up and crawl into your tent for some sleep." +
                 "\nYou wake up in the middle of the night to a growling noise nearby." +
@@ -82,7 +82,7 @@ namespace LoransJourneyTime
              "You might be able to fend off or even kill the possible threat, although laying still might be enough." +
              "\nDon't forget your food is still outside! There might not be enough for the whole journey..."));
 
-            story.Add(1.5f, new Scene("You charge outside with your makeshift spear, your eyes with a small hairy creature " +
+            story.Add(1.5f, new Scene(Scene.SceneType.Combat, "You charge outside with your makeshift spear, your eyes with a small hairy creature " +
                 "\nhappily feasting on your supplies." +
                 "\nThe creature jumps back after seeing your spear and hides behind a rock." +
                 "\nYou decide to..",
@@ -93,7 +93,7 @@ namespace LoransJourneyTime
               },
               "You already have a shortage of food, it's up to you what to prioritize"));
 
-            story.Add(1.6f, new Scene("As you slowly put your spear on the ground the curious creature peaks from behind the rock." +
+            story.Add(1.6f, new Scene(Scene.SceneType.Happy, "As you slowly put your spear on the ground the curious creature peaks from behind the rock." +
                 "\nIt looks again at you with it's big eyes while you offer it some dry bread." +
                 "\nHesitantly the creature walks up to you and takes the bread out of your hand." +
                 "\nIt smiles at you, it's eyes light up with golden colours. For a second you are being blinded." +
@@ -107,7 +107,7 @@ namespace LoransJourneyTime
               },
               "Yet again, there is only one choice here"));
 
-            story.Add(1.7f, new Scene("After the eventful night you feel refreshed and light, it feels as though a mystical force is" +
+            story.Add(1.7f, new Scene(Scene.SceneType.TempleInside, "After the eventful night you feel refreshed and light, it feels as though a mystical force is" +
                 "\npushing you towards your goal. You get up to pack up camp and secure your daughter to your back." +
                 "\nYou can't help but smile when you start walking." +
                 "\nAfter another day of walking you finally see a temple in the distance." +
@@ -122,7 +122,7 @@ namespace LoransJourneyTime
               },
               "Yet again, there is only one choice here"));
 
-            story.Add(1.8f, new Scene("The last bit of grass has now turned into snow and there are barely any trees left." +
+            story.Add(1.8f, new Scene(Scene.SceneType.Tense, "The last bit of grass has now turned into snow and there are barely any trees left." +
                 "\nYou are now on the slope of the mountain at the first stop." +
                 "\nAs you draw closer to the temple you feel a wave of discomfort, there is something different " +
                 "\nabout this once blissful place." +
@@ -137,7 +137,7 @@ namespace LoransJourneyTime
               },
               "It is getting dark, you need to get inside soon! How will you respond?"));
 
-            story.Add(1.9f, new Scene("As you look around you, you notice a man in the distance with a red with yellow robe walking" +
+            story.Add(1.9f, new Scene(Scene.SceneType.TempleInside, "As you look around you, you notice a man in the distance with a red with yellow robe walking" +
                 "\nthrough the snow. On his shoulder a familiar figure." +
                 "\nIt is the friendly Tanuki from before and it is pointing directly at you." +
                 "\nSlowly the monk approaches you, he waves friendly at you." +
@@ -150,7 +150,7 @@ namespace LoransJourneyTime
               },
               "Would you rather show the same respect back to the monk or save your friend from a cold dip in the snow"));
 
-            story.Add(1.11f, new Scene("As the old man bows to greet you, the Tanuki tumbles of his shoulder. " +
+            story.Add(1.11f, new Scene(Scene.SceneType.TempleInside, "As the old man bows to greet you, the Tanuki tumbles of his shoulder. " +
                 "\nJust as fast as it fell the Tanuki disappeared again into nothing, saving itself from a cold dip in the snow." +
                 "\n\nIt's been a long time, I remember you from when you were a child. Your father used to bring you here!" + "  Expressed the old monk" +
                 "\n\n" +
@@ -172,7 +172,7 @@ namespace LoransJourneyTime
               },
               "Be nice or honest?"));
 
-            story.Add(1.12f, new Scene("Master Baku invites you in the main hall where it seems the last fire is still keeping a part" +
+            story.Add(1.12f, new Scene(Scene.SceneType.TempleInside, "Master Baku invites you in the main hall where it seems the last fire is still keeping a part" +
                 "\nof the temple warm." +
                 "\nMaster Baku's face turns grim as you carefully lay your daughter's body down and take a seat on a cushions." +
                 "\n\nSo this is why you came, my sincere condolences.." +
@@ -197,7 +197,7 @@ namespace LoransJourneyTime
               },
               ""));
 
-            story.Add(1.13f, new Scene("Congrationlations! You finished the demo of the game!",
+            story.Add(1.13f, new Scene(Scene.SceneType.Win, "Congrationlations! You finished the demo of the game!",
               new List<Choice>
               {
                             new Choice("Exit", 1.13f),
@@ -206,7 +206,7 @@ namespace LoransJourneyTime
               ""));
 
             // BRANCH 2 -------------------------------------- BRANCH 2 ------------------------------------- BRANCH 2
-            story.Add(2.1f, new Scene("You exit your cabin and walk up to a small hill just outside of the village." +
+            story.Add(2.1f, new Scene(Scene.SceneType.Memories, "You exit your cabin and walk up to a small hill just outside of the village." +
                 "\nThe sun is slowly rising.." +
                 "\nFrom here you can oversee the small village." +
                 "\nAs you gently put down your daughter's body on the ground you sit down next to her." +
@@ -226,7 +226,7 @@ namespace LoransJourneyTime
                "Let's keep going!"));
 
             // BRANCH 3 -------------------------------------- BRANCH 3 ------------------------------------- BRANCH 3
-            story.Add(3.1f, new Scene("As you slowly approach the house you notice shadows moving around inside." +
+            story.Add(3.1f, new Scene(Scene.SceneType.Tense, "As you slowly approach the house you notice shadows moving around inside." +
                 "\n\nThis is the house where the Lin family used to live. A happy family with 3 kids who would always play and dance" +
                 "\nmaking the town more lively." +
                 "\nOne day they simply dissapeared without a trace, only the father was left but he was not able to speak anymore." +
@@ -244,7 +244,7 @@ namespace LoransJourneyTime
               },
               "The journal could uncover the truth about the family that disapeared!"));
 
-            story.Add(3.2f, new Scene("\nSuddenly the front door slams shut behind you, your turn around but see nothing." +
+            story.Add(3.2f, new Scene(Scene.SceneType.Combat,"\nSuddenly the front door slams shut behind you, your turn around but see nothing." +
                 "\nAs you run back to the door something is touching the back of your neck..." +
                 "\nYou turn around to see a massive cat with evil eyes and two tails staring right at you, a Nekomata! " +
                 "\nKnown to devour households and take the homes of their victims. These creatures are very territorial and will almost" +
@@ -258,7 +258,7 @@ namespace LoransJourneyTime
 
               },
               ""));
-            story.Add(3.3f, new Scene("",
+            story.Add(3.3f, new Scene(Scene.SceneType.Death,"",
               new List<Choice>
               {
                 new Choice("....", 3.3f),
@@ -267,7 +267,7 @@ namespace LoransJourneyTime
               ""));
 
             // BRANCH 4 -------------------------------------- BRANCH 4 ------------------------------------- BRANCH 4
-            story.Add(4.1f, new Scene("You enter the cave, lighting your torch with a firestone." +
+            story.Add(4.1f, new Scene(Scene.SceneType.Combat, "You enter the cave, lighting your torch with a firestone." +
                 "\nThe light of the torch flickers on the walls, a strong wind gushes through the cave extinguishing the torch." +
                 "\nYou relight the torch and look up to a pair of big eyes not even half a meter away from you." +
                 "\n\nAs your eyes readjust to the light you see the creature with massive fangs sticking out." +
@@ -282,7 +282,7 @@ namespace LoransJourneyTime
               },
               ""));
 
-            story.Add(4.2f, new Scene("",
+            story.Add(4.2f, new Scene(Scene.SceneType.Death, "",
               new List<Choice>
               {
                 new Choice("", 4.2f),
@@ -290,7 +290,7 @@ namespace LoransJourneyTime
               ""));
 
             // BRANCH 5 -------------------------------------- BRANCH 5 ------------------------------------- BRANCH 5
-            story.Add(5.1f, new Scene("You try to lay as still as possible, trying not to alert the possible threat outside." +
+            story.Add(5.1f, new Scene(Scene.SceneType.Somber, "You try to lay as still as possible, trying not to alert the possible threat outside." +
                 "\nAfter a while the sound stopped, you wait for a bit longer to be sure before you step outside to check your food." +
                 "\nEverything has been eaten, there is nothing left." +
                "\nYou decide to..",
@@ -300,7 +300,7 @@ namespace LoransJourneyTime
              },
              "There is nothing for you to do now but sleep. It is still too dark to continue."));
 
-            story.Add(5.2f, new Scene("After the eventful night you feel doubtful and hungry." +
+            story.Add(5.2f, new Scene(Scene.SceneType.TempleInside, "After the eventful night you feel doubtful and hungry." +
                 "\nWith no food to eat you get up to pack up camp and secure your daughter to your back." +
                 "\nAfter another day of walking you finally see a temple in the distance." +
                 "\nYou recognize it immediately, this is the temple your father brought you to when you were just a boy." +
@@ -314,7 +314,7 @@ namespace LoransJourneyTime
               },
               "There is only one choice here"));
 
-            story.Add(5.3f, new Scene("As you continue you feel dizzy and cold, it feels as though you used up your final strenght." +
+            story.Add(5.3f, new Scene(Scene.SceneType.TempleOutside, "As you continue you feel dizzy and cold, it feels as though you used up your final strenght." +
                 "\nThe last bit of grass has now turned into snow and there are barely any trees left." +
                 "\nYou are now on the slope of the mountain at the first stop." +
                 "\nAs you draw closer to the temple you feel a wave of discomfort, there is something different " +
@@ -330,7 +330,7 @@ namespace LoransJourneyTime
               },
               "It is getting dark, you need to get inside soon! How will you respond?"));
 
-            story.Add(5.4f, new Scene("As you look around you, you see only endless hills of snow and the giant holy mountain in the distance." +
+            story.Add(5.4f, new Scene(Scene.SceneType.Death,"As you look around you, you see only endless hills of snow and the giant holy mountain in the distance." +
                 "\nYou are on your own." +
                 "\n\nYou keep knocking the gate, screaming to let you in. But alas, no one answers. " +
                 "\nAs the sun disappears behind the mountains and the air feels colder and colder, you start to lose your vision." +
@@ -347,7 +347,7 @@ namespace LoransJourneyTime
               },
               "...."));
 
-            story.Add(5.5f, new Scene("",
+            story.Add(5.5f, new Scene(Scene.SceneType.Death, "",
               new List<Choice>
               {
                             new Choice("", 5.5f),
@@ -355,7 +355,7 @@ namespace LoransJourneyTime
               "...."));
 
             // BRANCH 6 -------------------------------------- BRANCH 6 ------------------------------------- BRANCH 6
-            story.Add(6.1f, new Scene("As you try to scare the creature by charging at it, the Tanuki jumps from behind the rock." +
+            story.Add(6.1f, new Scene(Scene.SceneType.Combat, "As you try to scare the creature by charging at it, the Tanuki jumps from behind the rock." +
                 "\nYou now recognize this creature. It's a forest spirit in the form of a raccoon dog" +
                 "\nthat can bring good luck to humans who are nice to it." +
                 "\nIt probably followed the smell of food coming from your back." +
@@ -371,7 +371,7 @@ namespace LoransJourneyTime
              "There is nothing for you to do now but sleep. It is still too dark to continue."));
 
             // BRANCH 7 -------------------------------------- BRANCH 7 ------------------------------------- BRANCH 7
-            story.Add(7.1f, new Scene("You take a few steps back and leap headfirst into the iron reinforced gate" +
+            story.Add(7.1f, new Scene(Scene.SceneType.Death, "You take a few steps back and leap headfirst into the iron reinforced gate" +
                 "\nYou crash into one of the metal studs on the gate and fall down. You are now unconscious." +
                 "\nLaying in the snow in front of the gate, you quickly freeze." +
                 "\nEverything turns black. ",
@@ -381,7 +381,7 @@ namespace LoransJourneyTime
               },
               "Really? That was your best idea? "));
 
-            story.Add(7.2f, new Scene("",
+            story.Add(7.2f, new Scene(Scene.SceneType.Death,"",
               new List<Choice>
               {
                             new Choice("Exit", 7.2f)
@@ -394,19 +394,39 @@ namespace LoransJourneyTime
     }
     class Scene
     {
+        public enum SceneType
+        {
+            Somber = 1,
+            Tense = 2,
+            Happy = 3,
+            Memories = 4,
+            Normal = 5,
+            Combat = 6,
+            TempleOutside = 7,
+            TempleInside = 8,
+            Death = 9,
+            Win = 10,
+        }
+
+        public SceneType _SceneType { get; set; }
         public string Text { get; }
         public List<Choice> Choices { get; }
         public string Instructions { get; }
         public int Karma { get; set; }
-
         public string Dialog { get; set; }
 
-        public Scene(string text, List<Choice> choices, string instructions, int karma = 0)
+        public Scene(SceneType sceneType, string text, List<Choice> choices, string instructions, int karma = 0)
         {
+            _SceneType = sceneType;
             Text = text;
             Choices = choices;
             Instructions = instructions;
             Karma = karma;
+        }
+
+        public  SceneType GetSceneType()
+        {
+          return _SceneType;
         }
     }
 
