@@ -15,6 +15,11 @@ namespace LoransJourneyTime
         private float currentScene = 1.0f;
         public string characterName = "";
         private int Karma = 0;
+        private static string filePath = "";
+        private Mp3FileReader? audioFile;
+        WaveOutEvent outputDevice = new WaveOutEvent();
+        private Scene.SceneType? lastSceneType = null;
+
 
         // Constructor: Initializes the game by setting up the story and available commands.
         public Game()
@@ -225,47 +230,36 @@ namespace LoransJourneyTime
 
         public async void PlaySceneMusic()
         {
-            var lastSceneType = story[currentScene].GetSceneType();
             var currentSceneType = story[currentScene].GetSceneType();
 
-            lastSceneType = currentSceneType;
-
-            string filePath = "";
             if (currentSceneType == lastSceneType)
             {
-
-
-                
-
-
+                return;
             }
-            else
+
+            lastSceneType = currentSceneType;
+            outputDevice.Stop();
+            audioFile?.Dispose();
+
+            switch (currentSceneType)
             {
-                
-                switch (currentSceneType)
-                {
-                    case Scene.SceneType.Somber:
+                case Scene.SceneType.Somber:
 
-                        filePath = "Assets/AudioFiles/cinematic-slow-sad-piano-soundtrack-187684.mp3";
+                    filePath = "Assets/AudioFiles/Somber.mp3";
 
-                        break;
-                    case Scene.SceneType.Normal:
-                        // code block
-                        break;
-                    default:
-                        // code block
-                        break;
-                }
+                    break;
+                case Scene.SceneType.Happy:
+                    filePath = "Assets/AudioFiles/Happy.mp3";
+                    break;
+                default:
+                    // code block
+                    break;
             }
 
+            audioFile = new Mp3FileReader(filePath);
+            outputDevice.Init(audioFile);
+            outputDevice.Play();
 
-
-                using (var audioFile = new Mp3FileReader(filePath))
-                using (var outputDevice = new WaveOutEvent())
-                {
-                    outputDevice.Init(audioFile);
-                    outputDevice.Play();
-                }
 
         }
 

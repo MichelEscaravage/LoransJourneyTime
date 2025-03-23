@@ -107,7 +107,7 @@ namespace LoransJourneyTime
               },
               "Yet again, there is only one choice here"));
 
-            story.Add(1.7f, new Scene(Scene.SceneType.TempleInside, "After the eventful night you feel refreshed and light, it feels as though a mystical force is" +
+            story.Add(1.7f, new Scene(Scene.SceneType.TemplePast, "After the eventful night you feel refreshed and light, it feels as though a mystical force is" +
                 "\npushing you towards your goal. You get up to pack up camp and secure your daughter to your back." +
                 "\nYou can't help but smile when you start walking." +
                 "\nAfter another day of walking you finally see a temple in the distance." +
@@ -137,7 +137,7 @@ namespace LoransJourneyTime
               },
               "It is getting dark, you need to get inside soon! How will you respond?"));
 
-            story.Add(1.9f, new Scene(Scene.SceneType.TempleInside, "As you look around you, you notice a man in the distance with a red with yellow robe walking" +
+            story.Add(1.9f, new Scene(Scene.SceneType.Monk, "As you look around you, you notice a man in the distance with a red with yellow robe walking" +
                 "\nthrough the snow. On his shoulder a familiar figure." +
                 "\nIt is the friendly Tanuki from before and it is pointing directly at you." +
                 "\nSlowly the monk approaches you, he waves friendly at you." +
@@ -150,7 +150,7 @@ namespace LoransJourneyTime
               },
               "Would you rather show the same respect back to the monk or save your friend from a cold dip in the snow"));
 
-            story.Add(1.11f, new Scene(Scene.SceneType.TempleInside, "As the old man bows to greet you, the Tanuki tumbles of his shoulder. " +
+            story.Add(1.11f, new Scene(Scene.SceneType.TemplePresent, "As the old man bows to greet you, the Tanuki tumbles of his shoulder. " +
                 "\nJust as fast as it fell the Tanuki disappeared again into nothing, saving itself from a cold dip in the snow." +
                 "\n\nIt's been a long time, I remember you from when you were a child. Your father used to bring you here!" + "  Expressed the old monk" +
                 "\n\n" +
@@ -172,7 +172,7 @@ namespace LoransJourneyTime
               },
               "Be nice or honest?"));
 
-            story.Add(1.12f, new Scene(Scene.SceneType.TempleInside, "Master Baku invites you in the main hall where it seems the last fire is still keeping a part" +
+            story.Add(1.12f, new Scene(Scene.SceneType.Ritual, "Master Baku invites you in the main hall where it seems the last fire is still keeping a part" +
                 "\nof the temple warm." +
                 "\nMaster Baku's face turns grim as you carefully lay your daughter's body down and take a seat on a cushions." +
                 "\n\nSo this is why you came, my sincere condolences.." +
@@ -300,7 +300,7 @@ namespace LoransJourneyTime
              },
              "There is nothing for you to do now but sleep. It is still too dark to continue."));
 
-            story.Add(5.2f, new Scene(Scene.SceneType.TempleInside, "After the eventful night you feel doubtful and hungry." +
+            story.Add(5.2f, new Scene(Scene.SceneType.TemplePast, "After the eventful night you feel doubtful and hungry." +
                 "\nWith no food to eat you get up to pack up camp and secure your daughter to your back." +
                 "\nAfter another day of walking you finally see a temple in the distance." +
                 "\nYou recognize it immediately, this is the temple your father brought you to when you were just a boy." +
@@ -314,7 +314,7 @@ namespace LoransJourneyTime
               },
               "There is only one choice here"));
 
-            story.Add(5.3f, new Scene(Scene.SceneType.TempleOutside, "As you continue you feel dizzy and cold, it feels as though you used up your final strenght." +
+            story.Add(5.3f, new Scene(Scene.SceneType.TemplePresent, "As you continue you feel dizzy and cold, it feels as though you used up your final strenght." +
                 "\nThe last bit of grass has now turned into snow and there are barely any trees left." +
                 "\nYou are now on the slope of the mountain at the first stop." +
                 "\nAs you draw closer to the temple you feel a wave of discomfort, there is something different " +
@@ -402,10 +402,12 @@ namespace LoransJourneyTime
             Memories = 4,
             Normal = 5,
             Combat = 6,
-            TempleOutside = 7,
-            TempleInside = 8,
-            Death = 9,
-            Win = 10,
+            TemplePresent = 7,
+            TemplePast = 8,
+            Monk = 9,
+            Ritual = 10,
+            Death = 11,
+            Win = 12,
         }
 
         public SceneType _SceneType { get; set; }
