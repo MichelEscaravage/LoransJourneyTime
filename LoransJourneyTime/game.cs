@@ -19,6 +19,7 @@ namespace LoransJourneyTime
         private Mp3FileReader? audioFile;
         WaveOutEvent outputDevice = new WaveOutEvent();
         private Scene.SceneType? lastSceneType = null;
+        bool isReturningToMenu = false; 
 
 
         // Constructor: Initializes the game by setting up the story and available commands.
@@ -47,6 +48,15 @@ namespace LoransJourneyTime
                               "2. Load Game\n" +
                               "3. Instructions\n" +
                               "4. Exit");
+
+            if (!isReturningToMenu)
+            {
+                string introMusic = "Assets/AudioFiles/Intro.mp3";
+                audioFile = new Mp3FileReader(introMusic);
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
+            }
+            
         }
 
         // Handles the player's choice from the start menu and navigates to the appropriate action.
@@ -60,18 +70,31 @@ namespace LoransJourneyTime
             {
                 case "1":
                     AskForName();
+                    outputDevice.Stop();
+                    outputDevice.Dispose();
                     StartGame();
                     break;
                 case "2":
+                    outputDevice.Stop();
+                    outputDevice.Dispose();
                     LoadGame();
                     break;
                 case "3":
                     DisplayInstructions();
                     Console.Clear();
+                    isReturningToMenu = true;
                     StartMenuChoice();
                     break;
                 case "4":
                     ContinueOrClose();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    isReturningToMenu = true;
+                    StartMenuChoice(); // Re-call the method if input is invalid
                     break;
             }
         }
@@ -80,19 +103,24 @@ namespace LoransJourneyTime
         public void ContinueOrClose()
         {
             Console.Clear();
-            WarningDialog("Are you sure you want to quit? Press x to quit\n");
+            WarningDialog("Are you sure you want to quit?\n\n Press x to quit or ENTER to replay the game\n");
 
-            string input = Console.ReadLine();
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-            if (input?.ToLower() == "x")
+            if (keyInfo.Key == ConsoleKey.X)
             {
                 Console.Clear();
                 Environment.Exit(1);
             }
-            else
+            else if (keyInfo.Key == ConsoleKey.Enter)
             {
                 Console.Clear();
+                isReturningToMenu = true;
                 StartMenuChoice();
+            }
+            else
+            {
+                return;
             }
         }
 
@@ -243,24 +271,31 @@ namespace LoransJourneyTime
 
             switch (currentSceneType)
             {
-                case Scene.SceneType.Somber:
-
-                    filePath = "Assets/AudioFiles/Somber.mp3";
-
-                    break;
                 case Scene.SceneType.Happy:
                     filePath = "Assets/AudioFiles/Happy.mp3";
                     break;
+                case Scene.SceneType.Ritual:
+                    filePath = "Assets/AudioFiles/Ritual.mp3";
+                    break;
+                case Scene.SceneType.Somber:
+                    filePath = "Assets/AudioFiles/Somber.mp3";
+                    break;
+                case Scene.SceneType.TemplePast:
+                    filePath = "Assets/AudioFiles/TemplePast.mp3";
+                    break;
+                case Scene.SceneType.TemplePresent:
+                    filePath = "Assets/AudioFiles/TemplePresent.mp3";
+                    break;
+                case Scene.SceneType.Tense:
+                    filePath = "Assets/AudioFiles/Tense.mp3";
+                    break;
                 default:
-                    // code block
                     break;
             }
 
             audioFile = new Mp3FileReader(filePath);
             outputDevice.Init(audioFile);
             outputDevice.Play();
-
-
         }
 
         // Prompts the player to enter their choice and returns it as a lowercase string.
@@ -294,7 +329,6 @@ namespace LoransJourneyTime
             }
         }
 
-
         // Validates the player's choice, checks if it's a command or a valid scene option, and returns the next scene.
         private float ValidateAndReturnScene(string choice)
         {
@@ -316,7 +350,7 @@ namespace LoransJourneyTime
 
                 float nextScene = selectedChoice.NextScene;
 
-                if (nextScene == 1.13f)
+                if (nextScene == 1.15f)
                 {
                     WinGame();
                     return currentScene;

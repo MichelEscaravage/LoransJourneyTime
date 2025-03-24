@@ -107,7 +107,15 @@ namespace LoransJourneyTime
               },
               "Yet again, there is only one choice here"));
 
-            story.Add(1.7f, new Scene(Scene.SceneType.TemplePast, "After the eventful night you feel refreshed and light, it feels as though a mystical force is" +
+            story.Add(1.7f, new Scene(Scene.SceneType.Happy, "After the eventful night you feel refreshed and light, it feels as though a mystical force is" +
+               "\npushing you towards your goal.",
+             new List<Choice>
+             {
+                            new Choice("Press on", 1.8f),
+             },
+             "Yet again, there is only one choice here"));
+
+            story.Add(1.8f, new Scene(Scene.SceneType.TemplePast, "After the eventful night you feel refreshed and light, it feels as though a mystical force is" +
                 "\npushing you towards your goal. You get up to pack up camp and secure your daughter to your back." +
                 "\nYou can't help but smile when you start walking." +
                 "\nAfter another day of walking you finally see a temple in the distance." +
@@ -118,11 +126,11 @@ namespace LoransJourneyTime
                 "\ncourtyard. It is here where you played with the temple tiger cubs and took naps in the sun.",
               new List<Choice>
               {
-                            new Choice("Press on", 1.8f),
+                            new Choice("Press on", 1.9f),
               },
               "Yet again, there is only one choice here"));
 
-            story.Add(1.8f, new Scene(Scene.SceneType.Tense, "The last bit of grass has now turned into snow and there are barely any trees left." +
+            story.Add(1.9f, new Scene(Scene.SceneType.Tense, "The last bit of grass has now turned into snow and there are barely any trees left." +
                 "\nYou are now on the slope of the mountain at the first stop." +
                 "\nAs you draw closer to the temple you feel a wave of discomfort, there is something different " +
                 "\nabout this once blissful place." +
@@ -133,11 +141,11 @@ namespace LoransJourneyTime
               new List<Choice>
               {
                             new Choice("Barge your way in by running into the gate", 7.1f, karmaEffect: -3), //BRANCH 7 ----
-                            new Choice("Look around you for help", 1.9f),
+                            new Choice("Look around you for help", 1.10f),
               },
               "It is getting dark, you need to get inside soon! How will you respond?"));
 
-            story.Add(1.9f, new Scene(Scene.SceneType.Monk, "As you look around you, you notice a man in the distance with a red with yellow robe walking" +
+            story.Add(1.11f, new Scene(Scene.SceneType.Monk, "As you look around you, you notice a man in the distance with a red with yellow robe walking" +
                 "\nthrough the snow. On his shoulder a familiar figure." +
                 "\nIt is the friendly Tanuki from before and it is pointing directly at you." +
                 "\nSlowly the monk approaches you, he waves friendly at you." +
@@ -150,7 +158,7 @@ namespace LoransJourneyTime
               },
               "Would you rather show the same respect back to the monk or save your friend from a cold dip in the snow"));
 
-            story.Add(1.11f, new Scene(Scene.SceneType.TemplePresent, "As the old man bows to greet you, the Tanuki tumbles of his shoulder. " +
+            story.Add(1.12f, new Scene(Scene.SceneType.TemplePresent, "As the old man bows to greet you, the Tanuki tumbles of his shoulder. " +
                 "\nJust as fast as it fell the Tanuki disappeared again into nothing, saving itself from a cold dip in the snow." +
                 "\n\nIt's been a long time, I remember you from when you were a child. Your father used to bring you here!" + "  Expressed the old monk" +
                 "\n\n" +
@@ -172,16 +180,25 @@ namespace LoransJourneyTime
               },
               "Be nice or honest?"));
 
-            story.Add(1.12f, new Scene(Scene.SceneType.Ritual, "Master Baku invites you in the main hall where it seems the last fire is still keeping a part" +
+            story.Add(1.13f, new Scene(Scene.SceneType.TemplePresent, 
+                "Master Baku invites you in the main hall where it seems the last fire is still keeping a part" +
                 "\nof the temple warm." +
                 "\nMaster Baku's face turns grim as you carefully lay your daughter's body down and take a seat on a cushions." +
                 "\n\nSo this is why you came, my sincere condolences.." +
-                "\nWe will bless her tonight so you can make the rest of the journey to her final resting place tomorrow." +
-                "\nFollow me please." +
+                "\nWe will bless her tonight so you can continue the journey to her final resting place tomorrow." +
+                "\nFollow me please."+
                 "\n\nAs you follow Master Baku down the dark halls, you notice every room is abandoned and dark.." +
                 "\nCould he be here alone?" +
                 "\n\nyou walk up a flight of stairs where you end up in a room with a bath. The water seems to give a golden light" +
-                "\nilluminating the room in a golden glow." +
+                "\nilluminating the room in a golden glow.",
+              new List<Choice>
+              {
+                            new Choice("Stare at the golden glowing water", 1.13f, karmaEffect: +1),
+
+              },//
+              ""));
+
+            story.Add(1.14f, new Scene(Scene.SceneType.Ritual,
                 "\nMaster Baku holds out his arms, indicating you to hand over your daughter to him. One last time you look at your" +
                 "\ndaughter wrapped in white cloth, you give her a kiss on her head and gently lay her in Master Baku's arms." +
                 "\n\n\nMaster Baku slowly walks into the water as he unwraps your daughter's body from the white cloth." +
@@ -197,7 +214,7 @@ namespace LoransJourneyTime
               },
               ""));
 
-            story.Add(1.13f, new Scene(Scene.SceneType.Win, "Congrationlations! You finished the demo of the game!",
+            story.Add(1.15f, new Scene(Scene.SceneType.Win, "Congrationlations! You finished the demo of the game!",
               new List<Choice>
               {
                             new Choice("Exit", 1.13f),
