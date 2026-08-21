@@ -81,3 +81,5 @@ $RECYCLE.BIN/
 *.nuget/
 *.node_modules/
 *.bcr/
+
+StoryInitializer.cs
